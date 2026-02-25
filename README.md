@@ -32,7 +32,7 @@ pip install paho-mqtt
 # Links
 | Project |
 | ------------- |
-| [Threat Model with STRIDE Analysis](threat-model-stride.pdf/) |
+| [Threat Model with STRIDE Analysis](Adesuyi-Emmanuel-Omole - Threat Model.pdf/) |
 | [Insecure Pipeline](insecure-pipeline/) |
 | [Secure Pipeline with TLS](secure-pipeline-TLS/) |
 | [Secure Pipeline with mTLS](secure-pipeline-MTLS/) |
