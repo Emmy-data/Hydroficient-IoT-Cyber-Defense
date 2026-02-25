@@ -12,7 +12,7 @@ It includes:
 # Set up
 ### 1. Clone or download repo
 ```
-https://github.com/arafr/Emmy-data/Hydroficient-IoT-Cyber-Defense.git
+https://github.com/Emmy-data/Hydroficient-IoT-Cyber-Defense.git
 ```
 
 ### 2. Install mosquitto: 
