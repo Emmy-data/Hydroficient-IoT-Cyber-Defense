@@ -29,4 +29,10 @@ source venv/bin/activate
 ```
 pip install paho-mqtt
 ```
-
+# Links
+| Project |
+| ------------- |
+| [Threat Model with STRIDE Analysis](threat-model-stride.pdf/) |
+| [Insecure Pipeline](insecure-pipeline/) |
+| [Secure Pipeline with TLS](secure-pipeline-TLS/) |
+| [Secure Pipeline with mTLS](secure-pipeline-MTLS/) |
