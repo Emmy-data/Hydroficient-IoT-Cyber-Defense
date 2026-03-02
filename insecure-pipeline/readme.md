@@ -10,7 +10,7 @@ mosquitto -v
 
 Broker will start on port 1883 (insecure, no authentication)
 
-![broker](media/mosquitto-broker.png)
+![broker](images/broker.png)
 
 ### 2. Start publisher in another terminal:
 ``` 
@@ -19,7 +19,7 @@ python3 publisher.py
 
 Publisher will generate and publish messages to topic every 5 seconds.
 
-![publisher](media/publisher.png)
+![publisher](images/publisher.png)
 
 ### 3. In another terminal, start subscriber:
 ```
@@ -27,7 +27,7 @@ python3 subscriber.py
 ```
 
 Subscriber will subscribe to the same topic and receive messages from publisher.
-![subscriber](media/subscriber.png)
+![subscriber](imagessubscriber.png)
 
 # Vulnerability
 Keep the publisher running. In a new terminal, use a mosquitto command to subscribe to all topics.
@@ -35,6 +35,6 @@ Keep the publisher running. In a new terminal, use a mosquitto command to subscr
 mosquitto_sub -t "#"
 ```
 
-![vulnerability](media/vulnerability.png)
+![vulnerability](images/attacker.png)
 
 Anyone with access to our network can view all messages sent to our broker (to ANY topic).
