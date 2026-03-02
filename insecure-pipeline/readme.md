@@ -1,7 +1,7 @@
 # Overview 
-We have a broker (mosquitto), publisher and subscriber. Publisher will publish MQTT messages over port 1883 to x topic. Subscriber will subscribe to x topic and receive all messages sent to x topic, including the ones sent by publisher.
+In this insecure pipeline created, We have a MQTT broker (mosquitto), publisher and subscriber. A python file called Publisher will publish MQTT messages (water readings) over port 1883 to Grandmarina Hotel. Subscriber (Grand Marina Hotel) will subscribe to x topic and receive all messages sent to x topic, from the three hyydrologic devices including the ones sent by publisher.
 
-This set up is insecure because anyone can publish and subscribe to topics, no authentication is done. Also, attacker can set up a fake broker and capture sensor data.
+This set up is insecure because anyone can publish and subscribe to topics, it lacks authentication measures. Hence, an attacker can set up a fake broker, subscribes and capture data sent from the publisher to the subscriber.
 
 ### 1. Start mosquitto broker on terminal:
 ```
