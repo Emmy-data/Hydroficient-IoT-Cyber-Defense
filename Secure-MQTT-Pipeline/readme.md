@@ -1,9 +1,9 @@
 # Overview
-On top of our insecure pipeline, we will add one way TLS for encryption and broker authentication. The subscriber, publisher will verify the broker's identity before transferring readings. This prevents attackers from setting up a fake broker and stealing readings from sensors. Additionally, readings will be encrypted in transit so anyone other than the broker can't view our data.
+In this project, from the previous insecure pipeline, we will add one way TLS for encryption and broker authentication. The subscriber, publisher will verify the broker's identity before transferring readings. This prevents attackers from setting up a fake broker and stealing readings from sensors. Additionally, readings will be encrypted in transit so anyone other than the broker can't view our data.
 
 # Protections added to pipeline:
 1. Encryption
-2. Authentication (server or/and client proves they are not an imposter) (authN is done using digital certificates, it proves identity)
+2. Authentication (server or/and client proves they are not an imposter) 
 3. Data modification in transit protection (message integrity check)
 
 # One Way TLS Handshake Overview
