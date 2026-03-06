@@ -1,0 +1,6 @@
+The server and CA key certificates are mean't to be private.
+
+  You can generate yours by running the generate_certs.py file
+''''
+  python3 generate_certs.py
+  '''''
