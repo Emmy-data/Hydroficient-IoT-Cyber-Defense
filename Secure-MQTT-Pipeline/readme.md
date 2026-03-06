@@ -36,7 +36,7 @@ mqttc.tls_set('certs/ca.pem')
 ### 4. Test if TLS is working
 Start mosquitto broker with TLS configuration (provide proper path to conf file):
 ```
-mosquitto -c mosquitto-tls.conf -v      
+mosquitto -c mosquitto_tls.conf -v      
 ```
 
 On another terminal, run publisher.py:
@@ -52,6 +52,10 @@ python3 subscriber.py
 We will start seeing readings from publisher. Visually, this looks same as our insecure pipeline, however, now broker is authenticated and readings are encrypted.
 
 # Security Tests
+This step is to confirm if external party can connect to our MQTT broker. To do this, run
+```
+mosquitto_sub -h localhost -p 8883 -t "test/#"
+```
 ![TLS Tests](images/protocol_error.png)
 
 Tests passed:
