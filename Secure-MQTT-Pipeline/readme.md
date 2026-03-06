@@ -61,7 +61,7 @@ On another terminal, run publisher.py:
 ```
 python3 publisher.py
 ```
-![Publisher](images/publisher.png)
+![Publisher](images/Publisher.png)
 This will start publishing readings.
 
 On another terminal, run subscriber.py:
