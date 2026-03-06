@@ -18,6 +18,9 @@ In this project, from the previous insecure pipeline, we will add one way TLS fo
 # Set up instructions
 ### 1. Generate key and certificates
 Generate CA and server keys, certificates using the generate_certs.py file:
+```
+python3 generate_certs.py
+```
 
 ### 2. Configure Mosquitto Broker to Use Certificates
 Put [mosquitto-tls.conf](mosquitto_tls.conf) file in directory. This file will tell mosquitto broker to use port 8883 (TLS) and which certificates and paths to use. 
