@@ -22,10 +22,7 @@ Generate CA and server keys, certificates using the generate_certs.py file:
 python3 generate_certs.py
 ```
 
-### 2. Configure Mosquitto Broker to Use Certificates
-Put [mosquitto-tls.conf](mosquitto_tls.conf) file in directory. This file will tell mosquitto broker to use port 8883 (TLS) and which certificates and paths to use. 
-
-### 3. Upgrade subscriber.py and publisher.py to use TLS
+### 2. Upgrade subscriber.py and publisher.py files to use TLS encryption
 Change this line to connect over port 8883 (MQTTS) instead of 1883.
 ```
 mqttc.connect("localhost", 8883)
@@ -36,25 +33,12 @@ Add this line to provide CA certificate path:
 mqttc.tls_set('certs/ca.pem')
 ```
 
-### 4. Test if TLS is working
-Start mosquitto broker with TLS configuration (provide proper path to conf file):
-```
-mosquitto -c mosquitto_tls.conf -v      
-```
+# After the previous edits to the subscriber and publisher.py files. Open your terminal and run the following prompts.
 
-On another terminal, run publisher.py:
-```
-python3 publisher.py
-```  
-This will start publishing readings.
+### 3. Configure Mosquitto Broker to Use Certificates
+Put [mosquitto_tls.conf](mosquitto_tls.conf) file in directory. This file will tell mosquitto broker to use port 8883 (TLS) and which certificates and paths to use. 
 
-On another terminal, run subscriber.py:
-```
-python3 subscriber.py
-```
-We will start seeing readings from publisher. Visually, this looks same as our insecure pipeline, however, now broker is authenticated and readings are encrypted.
-
-# Security Tests
+### 4. Security Tests
 This step is to confirm if external party can connect to our MQTT broker. To do this, run
 ```
 mosquitto_sub -h localhost -p 8883 -t "test/#"
@@ -65,6 +49,27 @@ Tests passed:
 * Eavesdropping (no ca certificate)
 * Expired certificate test
 * Wrong certificate
+
+
+### 5. Test if TLS is working when connected to the broker
+Start mosquitto broker with TLS configuration (provide proper path to conf file):
+```
+mosquitto -c mosquitto_tls.conf -v      
+```
+
+On another terminal, run publisher.py:
+```
+python3 publisher.py
+```
+![Publisher](images/publisher.png)
+This will start publishing readings.
+
+On another terminal, run subscriber.py:
+```
+python3 subscriber.py
+```
+![Subscriber](images/subscriber.png)
+
 
 # Vulnerability
 In this set up, only the broker is being authenticated, not the sensor. That means anyone with the CA certificate can create a fake sensor and send fake readings to broker. In mTLS (mutual TLS), both broker and sensors will be authenticated using CA's signature.
