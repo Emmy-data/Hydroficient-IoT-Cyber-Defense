@@ -17,11 +17,10 @@ In this project, from the previous insecure pipeline, we will add one way TLS fo
 
 # Set up instructions
 ### 1. Generate key and certificates
-Generate CA and server keys, certificates using openSSL:
-[openssl-commands.md](openssl-commands.md)
+Generate CA and server keys, certificates using the generate_certs.py file:
 
 ### 2. Configure Mosquitto Broker to Use Certificates
-Put [mosquitto-tls.conf](mosquitto-tls.conf) file in directory. This file will tell mosquitto broker to use port 8883 (TLS) and which certificates, key to use. 
+Put [mosquitto-tls.conf](mosquitto_tls.conf) file in directory. This file will tell mosquitto broker to use port 8883 (TLS) and which certificates and paths to use. 
 
 ### 3. Upgrade subscriber.py and publisher.py to use TLS
 Change this line to connect over port 8883 (MQTTS) instead of 1883.
@@ -53,7 +52,7 @@ python3 subscriber.py
 We will start seeing readings from publisher. Visually, this looks same as our insecure pipeline, however, now broker is authenticated and readings are encrypted.
 
 # Security Tests
-![TLS Tests](media/subscriber-tests.png)
+![TLS Tests](images/protocol_error.png)
 
 Tests passed:
 * Eavesdropping (no ca certificate)
