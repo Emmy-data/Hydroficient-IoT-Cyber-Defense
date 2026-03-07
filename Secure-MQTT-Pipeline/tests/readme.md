@@ -141,23 +141,26 @@ We will be insterchanging between the insecure broker (mosquitto -c mosquitto_in
 python experiment_runner.py --mode stress --tls off --rate 10 --duration 30
 python experiment_runner.py --mode stress --tls on --rate 10 --duration 30
 ```
-![Stress](images/10m/s-a.png)
-![Stress](images/10m/s-b.png)
+![Stress](images/10m:s-a.png)
+![Stress](images/10m:s-b.png)
 ### At 25 messages/second (Moderate load):
 ```
 python experiment_runner.py --mode stress --tls off --rate 25 --duration 30
 python experiment_runner.py --mode stress --tls on --rate 25 --duration 30
 ```
-![Stress](images/20m/s-a.png)
-
+![Stress](images/25m:s-a.png)
+![Stress](images/25m:s-b.png)
 ### At 50 messages/second (Emergency mode):
 ```
 python experiment_runner.py --mode stress --tls off --rate 50 --duration 30
 python experiment_runner.py --mode stress --tls on --rate 50 --duration 30
 ```
-
+![Stress](images/50m:s-a.png)
+![Stress](images/50m:s-b.png)
 ## At 100 messages/second (Beyond requirements):
 ```
 python experiment_runner.py --mode stress --tls off --rate 100 --duration 30
 python experiment_runner.py --mode stress --tls on --rate 100 --duration 30
 ```
+![Stress](images/100m:s-a.png)
+![Stress](images/100m:s-b.png)
