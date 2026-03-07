@@ -9,7 +9,7 @@ Terminal 1 — Start insecure broker:
 ```
 mosquitto -c mosquitto_insecure.conf -v
 ```
-![broker](images/insecure-conf.png)
+![broker](Secure-MQTT-Pipeline/images/insecure-conf.png)
 
 Terminal 2 — Be the eavesdropper:
 ```
