@@ -101,6 +101,7 @@ Latency test in Terminal 2:
 ```
 python experiment_runner.py --mode latency --tls off --count 50
 ```
+![Scenario](images/tlsoff.png)
 Part B: With TLS
 Start the TLS broker:
 
@@ -114,4 +115,13 @@ Terminal 2:
 ```
 python experiment_runner.py --mode latency --tls on --count 50
 ```
-
+![Scenario](images/tlson.png)
+### Calculate the Extra Time
+Now that we have both sets of numbers, here's how to calculate exactly how much slower TLS is. Use this formula:
+ 
+TLS Overhead = (TLS_avg - NoTLS_avg) / NoTLS_avg × 100%
+ 
+### Calculation:
+Without TLS: 12.34 ms average
+With TLS: 18.56 ms average
+Overhead: (18.56 - 12.34) / 12.34 x 100% = 50.4%
