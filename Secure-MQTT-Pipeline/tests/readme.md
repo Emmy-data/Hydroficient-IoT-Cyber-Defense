@@ -88,3 +88,30 @@ Wait, it succeeded? Yes, and that's the problem.
 ### Results
 ![Scenario](images/scenario.png)
 
+
+# Speed test
+Part A: Baseline (No TLS)
+Make sure insecure Mosquitto is running on port 1883.
+
+Terminal 1:
+```
+mosquitto -c mosquitto_insecure.conf -v
+```
+Latency test in Terminal 2:
+```
+python experiment_runner.py --mode latency --tls off --count 50
+```
+Part B: With TLS
+Start the TLS broker:
+
+Terminal 1:
+```
+mosquitto -c mosquitto_tls.conf -v
+```
+Then latency test with TLS enabled in Terminal 2:
+ 
+Terminal 2:
+```
+python experiment_runner.py --mode latency --tls on --count 50
+```
+
