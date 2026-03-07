@@ -9,6 +9,7 @@ Terminal 1 — Start insecure broker:
 ```
 mosquitto -c mosquitto_insecure.conf -v
 ```
+(images/insecure-conf.png)
 Terminal 2 — Be the eavesdropper:
 ```
 mosquitto_sub -h localhost -p 1883 -t "grandmarina/#" -v
