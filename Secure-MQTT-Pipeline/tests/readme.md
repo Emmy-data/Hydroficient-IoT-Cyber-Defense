@@ -86,5 +86,5 @@ SUCCESS: Connected to broker!
 Wait, it succeeded? Yes, and that's the problem.
 
 ### Results
-![Scenario] (images/scenario.png)
+![Scenario](images/scenario.png)
 
