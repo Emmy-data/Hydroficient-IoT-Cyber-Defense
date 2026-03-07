@@ -15,7 +15,7 @@ Terminal 2 — Be the eavesdropper:
 ```
 mosquitto_sub -h localhost -p 1883 -t "grandmarina/#" -v
 ```
-![broker](images/eavesa.png)
+![eavesdrop](images/eavesa.png)
 Terminal 3 — Publish sensor data:
 ```
 python experiment_runner.py --mode publish --tls off --count 5
