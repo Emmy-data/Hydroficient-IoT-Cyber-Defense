@@ -9,7 +9,7 @@ Terminal 1 — Start insecure broker:
 ```
 mosquitto -c mosquitto_insecure.conf -v
 ```
-![broker](Secure-MQTT-Pipeline/images/insecure-conf.png)
+![broker](images/insecure-conf.png)
 
 Terminal 2 — Be the eavesdropper:
 ```
@@ -85,6 +85,6 @@ Expected output:
 SUCCESS: Connected to broker!
 Wait, it succeeded? Yes, and that's the problem.
 
-# IMAGE OF THIS TEST
-![Scenario] (images/scenario)
+### Results
+![Scenario] (images/scenario.png)
 
