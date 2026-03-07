@@ -48,7 +48,7 @@ The result: The eavesdropper can't connect. Messages are sent securely. TLS work
 # Certificate test
 
 ### Scenario A: Correct Certificates (Should Succeed)
-This is your baseline — proper certificates should work. Make sure your TLS broker is still running in Terminal 1 from the eavesdropper test, then run this in Terminal 3:
+The connection should work if the certificates are correct
 ```
 python experiment_runner.py --mode connect --tls on
 ```
@@ -81,7 +81,6 @@ FAILED: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to ge
 What this means: The server's certificate wasn't signed by the "wrong" CA. The client correctly rejected it. This is how TLS prevents Person-in-the-Middle attacks.
 
 ### Scenario C: No Certificate Verification (Dangerous!)
-What if we tell the client to accept ANY certificate without checking? Run this in Terminal 3:
 ```
 python experiment_runner.py --mode connect --tls on --no-ca
 ```
