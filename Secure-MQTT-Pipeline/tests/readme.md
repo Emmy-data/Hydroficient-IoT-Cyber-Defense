@@ -91,6 +91,7 @@ Wait, it succeeded? Yes, and that's the problem.
 
 # Speed test
 Part A: Baseline (No TLS)
+
 Make sure insecure Mosquitto is running on port 1883.
 
 Terminal 1:
@@ -103,6 +104,7 @@ python experiment_runner.py --mode latency --tls off --count 50
 ```
 ![Scenario](images/tlsoff.png)
 Part B: With TLS
+
 Start the TLS broker:
 
 Terminal 1:
@@ -122,6 +124,6 @@ Now that we have both sets of numbers, here's how to calculate exactly how much 
 TLS Overhead = (TLS_avg - NoTLS_avg) / NoTLS_avg × 100%
  
 ### Calculation:
-Without TLS: 12.34 ms average
-With TLS: 18.56 ms average
-Overhead: (18.56 - 12.34) / 12.34 x 100% = 50.4%
+Without TLS: 52.55 ms average
+With TLS: 52.57 ms average
+Overhead: (52.57 - 52.55) / 52.55 x 100% = 0.03%
