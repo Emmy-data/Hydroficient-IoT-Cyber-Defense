@@ -2,7 +2,7 @@
 
 In this test, we will be working as a penetration tester in order to prove our security actually works: an eavesdropper test, a certificate test, a speed test, and a stress test. 
 
-# Eavesdrop test
+# 1: Eavesdrop test
 Part A: Without TLS (Insecure)
 Open three separate terminal windows and run each command in its own terminal:
 Terminal 1 — Start insecure broker:
@@ -45,7 +45,7 @@ python experiment_runner.py --mode publish --tls on --count 5
 
 The result: The eavesdropper can't connect. Messages are sent securely. TLS works!
 
-# Certificate test
+# 2: Certificate test
 
 ### Scenario A: Correct Certificates (Should Succeed)
 The connection should work if the certificates are correct
@@ -89,7 +89,7 @@ Wait, it succeeded? Yes, and that's the problem.
 ![Scenario](images/scenario.png)
 
 
-# Speed test
+# 3: Speed test
 Part A: Baseline (No TLS)
 
 Make sure insecure Mosquitto is running on port 1883.
@@ -127,3 +127,37 @@ TLS Overhead = (TLS_avg - NoTLS_avg) / NoTLS_avg × 100%
 Without TLS: 52.55 ms average
 With TLS: 52.57 ms average
 Overhead: (52.57 - 52.55) / 52.55 x 100% = 0.03%
+
+# 4: Stress test
+The stress test proves whether your TLS-secured pipeline can handle Grand Marina's real-world load.
+
+Normal operation is 10 msg/sec; emergency mode is 50 msg/sec — both must pass with TLS on.
+
+So we will be running with 4 different rates; 10,25,50 and 100msg/sec.
+We will be insterchanging between the insecure broker (mosquitto -c mosquitto_insecure.conf -v) and TLS broker (mosquitto -c mosquitto_tls.conf -v)
+
+### At 10 messages/second (Normal operation):
+```
+python experiment_runner.py --mode stress --tls off --rate 10 --duration 30
+python experiment_runner.py --mode stress --tls on --rate 10 --duration 30
+```
+![Stress](images/10m/s-a.png)
+![Stress](images/10m/s-b.png)
+### At 25 messages/second (Moderate load):
+```
+python experiment_runner.py --mode stress --tls off --rate 25 --duration 30
+python experiment_runner.py --mode stress --tls on --rate 25 --duration 30
+```
+![Stress](images/20m/s-a.png)
+
+### At 50 messages/second (Emergency mode):
+```
+python experiment_runner.py --mode stress --tls off --rate 50 --duration 30
+python experiment_runner.py --mode stress --tls on --rate 50 --duration 30
+```
+
+## At 100 messages/second (Beyond requirements):
+```
+python experiment_runner.py --mode stress --tls off --rate 100 --duration 30
+python experiment_runner.py --mode stress --tls on --rate 100 --duration 30
+```
