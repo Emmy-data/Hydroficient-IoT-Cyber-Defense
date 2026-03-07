@@ -53,11 +53,7 @@ The connection should work if the certificates are correct
 python experiment_runner.py --mode connect --tls on
 ```
 Expected output:
-==================================================
-  Connection Test
-  TLS: ON
-  CA Certificate: certs/ca.pem
-==================================================
+
 
 SUCCESS: Connected to broker!
 Now that you know the correct setup works, let's see what happens when someone shows up with the wrong credentials.
@@ -65,17 +61,16 @@ Now that you know the correct setup works, let's see what happens when someone s
 ### Scenario B: Wrong CA Certificate (Should Fail)
 What if the client has a different CA certificate? This simulates connecting to a fake broker.
 First, generate a "wrong" CA (a different certificate authority) in Terminal 3:
+```
 python experiment_runner.py --mode generate-wrong-ca
+```
 Then try to connect using the wrong CA in Terminal 3:
 ```
 python experiment_runner.py --mode test-wrong-ca
 ```
 Expected output:
-==================================================
-  Connection Test
-  TLS: ON
-  CA Certificate: certs/wrong-ca.pem
-==================================================
+
+
 
 FAILED: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate
 What this means: The server's certificate wasn't signed by the "wrong" CA. The client correctly rejected it. This is how TLS prevents Person-in-the-Middle attacks.
@@ -85,11 +80,11 @@ What this means: The server's certificate wasn't signed by the "wrong" CA. The c
 python experiment_runner.py --mode connect --tls on --no-ca
 ```
 Expected output:
-==================================================
-  Connection Test
-  TLS: ON
-  CA Certificate: NONE
-==================================================
+
 
 SUCCESS: Connected to broker!
 Wait, it succeeded? Yes, and that's the problem.
+
+# IMAGE OF THIS TEST
+![Scenario] (images/scenario)
+
