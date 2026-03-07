@@ -44,3 +44,53 @@ python experiment_runner.py --mode publish --tls on --count 5
 ![broker](images/tls-on.png)
 
 The result: The eavesdropper can't connect. Messages are sent securely. TLS works!
+
+# Certificate test
+
+### Scenario A: Correct Certificates (Should Succeed)
+This is your baseline — proper certificates should work. Make sure your TLS broker is still running in Terminal 1 from the eavesdropper test, then run this in Terminal 3:
+```
+python experiment_runner.py --mode connect --tls on
+```
+Expected output:
+==================================================
+  Connection Test
+  TLS: ON
+  CA Certificate: certs/ca.pem
+==================================================
+
+SUCCESS: Connected to broker!
+Now that you know the correct setup works, let's see what happens when someone shows up with the wrong credentials.
+
+### Scenario B: Wrong CA Certificate (Should Fail)
+What if the client has a different CA certificate? This simulates connecting to a fake broker.
+First, generate a "wrong" CA (a different certificate authority) in Terminal 3:
+python experiment_runner.py --mode generate-wrong-ca
+Then try to connect using the wrong CA in Terminal 3:
+```
+python experiment_runner.py --mode test-wrong-ca
+```
+Expected output:
+==================================================
+  Connection Test
+  TLS: ON
+  CA Certificate: certs/wrong-ca.pem
+==================================================
+
+FAILED: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate
+What this means: The server's certificate wasn't signed by the "wrong" CA. The client correctly rejected it. This is how TLS prevents Person-in-the-Middle attacks.
+
+### Scenario C: No Certificate Verification (Dangerous!)
+What if we tell the client to accept ANY certificate without checking? Run this in Terminal 3:
+```
+python experiment_runner.py --mode connect --tls on --no-ca
+```
+Expected output:
+==================================================
+  Connection Test
+  TLS: ON
+  CA Certificate: NONE
+==================================================
+
+SUCCESS: Connected to broker!
+Wait, it succeeded? Yes, and that's the problem.
