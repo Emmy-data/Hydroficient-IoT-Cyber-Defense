@@ -1,5 +1,5 @@
 # Overview
-On top of our TLS pipeline, we will add mTLS for device authentication. After device verifies broker's identity, broker will verify device identity before accepting readings. This prevents attackers from setting up a fake sensor and sending fake readings and dangerous commands.
+On top of our TLS pipeline, we will add mTLS for device authentication. After device verifies broker's identity, broker will verify device identity before accepting readings. This prevents attackers from setting up a fake sensor and sending fake readings and dangerous commands. We will generate client certificates — one per HYDROLOGIC device and configure Mosquitto to require client certificates (require_certificate true).
 
 # Protection added to pipeline:
 1. Authentication of devices (sensors and dashboards have to prove they are not an imposter)
