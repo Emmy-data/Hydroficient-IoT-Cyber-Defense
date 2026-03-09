@@ -124,8 +124,11 @@ Now that we have both sets of numbers, here's how to calculate exactly how much 
 TLS Overhead = (TLS_avg - NoTLS_avg) / NoTLS_avg × 100%
  
 ### Calculation:
+
 Without TLS: 52.55 ms average
+
 With TLS: 52.57 ms average
+
 Overhead: (52.57 - 52.55) / 52.55 x 100% = 0.03%
 
 # 4: Stress test
