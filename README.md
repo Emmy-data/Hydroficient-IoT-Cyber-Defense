@@ -1,5 +1,5 @@
 # Hydroficient-IoT-Cyber-Defense
-This is a repository committed to what i learnt and did i building a secure IoT device for Hydroficient water usuage and monitoring activities. This project secures the Grand Marina hotel’s HYDROLOGIC water monitoring system by implementing a secure IoT pipeline.
+This is a repository committed to what i learnt and did in building a secure IoT device for GrandMArina Hotel water usuage and monitoring activities. This project secures the Grand Marina hotel’s HYDROLOGIC water monitoring system by implementing a secure IoT pipeline.
 
 It includes:
 
