@@ -105,7 +105,7 @@ Run the latency benchmark:
 python mtls_benchmark.py --mode latency --count 50
 ```
 
-![test3](media/test4.png)
+![test3](images/latency.png)
 
 ### Test 4: Identity attack simulation
 
