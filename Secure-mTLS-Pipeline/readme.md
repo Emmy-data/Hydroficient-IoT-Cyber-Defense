@@ -24,7 +24,7 @@ Generate CA and server keys, certificates using the python file:
 python3 generate_certs.py
 ```
 ### 2. Configure Mosquitto Broker to Use Certificates
-Put [mosquitto-mtls.conf](mosquitto-mtls.conf) file in directory. This file will tell mosquitto broker to require device authenticate and not allow anonymous users.
+This file will tell mosquitto broker to require device authenticate and not allow anonymous users.
 ```
 allow_anonymous false
 require_certificate true
@@ -67,23 +67,16 @@ We will start seeing readings from publisher. Visually, this looks same, however
 
 
 # Security Tests
-### Test 1: Can a device with a valid certificate connect?
-Ran subcriber.py that points to a device certificate that's signed by the root CA. 
+### Test 1: Can a device with no certificate connect?
+Run the no_certs python file that only points to a CA certificate (no device certificate or key).
 ```
-mqttc.tls_set('../certs/ca.pem', '../certs/sensor1.pem','../certs/sensor1-key.pem')
-```
-Successfully connected, test passed.
-
-### Test 2: Can a device with no certificate connect?
-Run [tests/test2-no-cert.py](tests/test2-no-cert.py) that only points to a CA certificate (no device certificate or key).
-```
-mqttc.tls_set('../certs/ca.pem')
+python3 no_certs.py
 ```
 Error: peer did not return a certificate. Broker rejected the connection, test passed.
 
 ![no-device-certificate](media/test2.png)
 
-### Test 3: Can a device with a certificate from a different CA connect?
+### Test 2: Can a device with a certificate from a different CA connect?
 Generate differerent CA key, cert and device key, certificate (signed by different CA): [tests/generate-test-keys-certs.md](tests/generate-test-keys-certs.md)
 
 Run [tests/test3-different-ca.py](tests/test2-no-cert.py) that points to a device certificate signed by a different CA (not trusted by broker).
@@ -94,7 +87,7 @@ Run [tests/test3-different-ca.py](tests/test2-no-cert.py) that points to a devic
 
 Test passed.
 
-### Test 4: Can a device with an expired certificate connect?
+### Test 3: Can a device with an expired certificate connect?
 Generate expired certificate: [generate-test-keys-certs.md](generate-test-keys-certs.md)
 
 Run [tests/test4-expired-cert.py](tests/test4-expired-cert.py) that points to a an expired device certificate signed by the trusted CA.
