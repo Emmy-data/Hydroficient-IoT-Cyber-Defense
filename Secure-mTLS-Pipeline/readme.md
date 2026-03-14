@@ -27,6 +27,7 @@ Put [mosquitto-mtls.conf](mosquitto-mtls.conf) file in directory. This file will
 ```
 allow_anonymous false
 require_certificate true
+tls_version tlsv1.2
 ```
 
 ### 3. Upgrade subscriber.py and publisher.py to use mTLS
@@ -43,24 +44,26 @@ mqttc.tls_set('certs/ca.pem','certs/dashboard1.pem','certs/dashboard1-key.pem')
 ```
 
 ### 4. Test if mTLS is working
-![mTLS Tests](media/mtls-test.png)
+![mTLS Tests](images/broker.png)
 
 Start mosquitto broker with mTLS configuration (provide proper path to conf file):
 ```
 mosquitto -c mosquitto-mtls.conf -v      
 ```
-
-On another terminal, run publisher.py:
-```
-python3 publisher.py
-```  
-This will start publishing readings.
-
 On another terminal, run subscriber.py:
 ```
 python3 subscriber.py
 ```
+![mTLS Tests](images/sub.png)
+On another terminal, run publisher.py:
+```
+python3 publisher.py
+```
+![mTLS Tests](images/pub.png)
+This will start publishing readings.
+
 We will start seeing readings from publisher. Visually, this looks same, however, now broker and devices verify each other and readings are encrypted.
+
 
 # Security Tests
 ### Test 1: Can a device with a valid certificate connect?
