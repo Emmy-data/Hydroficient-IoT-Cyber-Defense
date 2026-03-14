@@ -105,8 +105,40 @@ Run the latency benchmark:
 python mtls_benchmark.py --mode latency --count 50
 ```
 
-![test4](media/test4.png)
+![test3](media/test4.png)
 
+### Test 4: Identity attack simulation
+
+In this attack simulation, we will be running a python script that tests four different
+scenarios of identity attack. The python script will run all the 4 tests either individually or altogether at once.
+
+Step 1: Start your mTLS broker in its own terminal:
+```
+mosquitto -c mosquitto_mtls.conf -v
+```
+Step 2: Run the python file to run the tests.
+```
+python3 identity_tester.py --mode all
+```
+# Scenario A: Correct client certificate
+Goal: Verify that normal mTLS connections work.
+Result: Passed and Connected
+![testa](media/SA.png)
+
+# Scenario B: No client certificate
+Goal: Verify that the broker rejects devices without certificates.
+Result: Passed and Rejected
+![test3](media/SB.png)
+
+# Scenario C: Certificate from wrong CA
+Goal: Verify that only certificates signed by your CA are accepted.
+Result: Passed and Rejected
+![test3](media/SC.png)
+
+# Scenario D: Expired certificate
+Goal: Verify that expired certificates are rejected.
+Result: Passed and Rejected
+![test3](media/SD.png)
 
 # Cost
 Adding mTLS has a connection time overhead. While making the connection, there’s an extra step (server has to verify client). This increase connection time, however, it is a one time cost. Sensors don’t need to connect again for hours or days. Once connection is established, there’s no extra message latency. In our environment, the benefits of mTLS outweigh this cost. 
