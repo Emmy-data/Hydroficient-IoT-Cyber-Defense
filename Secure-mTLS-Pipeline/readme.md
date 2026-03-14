@@ -123,22 +123,23 @@ python3 identity_tester.py --mode all
 # Scenario A: Correct client certificate
 Goal: Verify that normal mTLS connections work.
 Result: Passed and Connected
-![testa](media/SA.png)
+
+![testa](images/SA.png)
 
 # Scenario B: No client certificate
 Goal: Verify that the broker rejects devices without certificates.
 Result: Passed and Rejected
-![test3](media/SB.png)
+![test3](images/SB.png)
 
 # Scenario C: Certificate from wrong CA
 Goal: Verify that only certificates signed by your CA are accepted.
 Result: Passed and Rejected
-![test3](media/SC.png)
+![test3](images/SC.png)
 
 # Scenario D: Expired certificate
 Goal: Verify that expired certificates are rejected.
 Result: Passed and Rejected
-![test3](media/SD.png)
+![test3](images/SD.png)
 
 # Cost
 Adding mTLS has a connection time overhead. While making the connection, there’s an extra step (server has to verify client). This increase connection time, however, it is a one time cost. Sensors don’t need to connect again for hours or days. Once connection is established, there’s no extra message latency. In our environment, the benefits of mTLS outweigh this cost. 
