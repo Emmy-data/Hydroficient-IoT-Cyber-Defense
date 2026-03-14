@@ -18,10 +18,11 @@ On top of our TLS pipeline, we will add mTLS for device authentication. After de
 6. Encrypted data will be sent using the other entities' public key, which can only be decrypted by the other entities' private key. This makes sure only the real client/holding their private key can decrypt data.
 
 # Set up instructions
-### 1. Generate key and certificates
-Generate key and certificate for CA, server and 2 devices (sensor1, dashboard1) using openSSL:
-[generate-keys-certs.md](generate-keys-certs.md)
-
+### 1. Generate key and certificates for the broker and Hydrologic devices.
+Generate CA and server keys, certificates using the python file:
+```
+python3 generate_certs.py
+```
 ### 2. Configure Mosquitto Broker to Use Certificates
 Put [mosquitto-mtls.conf](mosquitto-mtls.conf) file in directory. This file will tell mosquitto broker to require device authenticate and not allow anonymous users.
 ```
