@@ -120,23 +120,23 @@ Step 2: Run the python file to run the tests.
 ```
 python3 identity_tester.py --mode all
 ```
-# Scenario A: Correct client certificate
+## Scenario A: Correct client certificate
 Goal: Verify that normal mTLS connections work.
 Result: Passed and Connected
 
 ![testa](images/SA.png)
 
-# Scenario B: No client certificate
+## Scenario B: No client certificate
 Goal: Verify that the broker rejects devices without certificates.
 Result: Passed and Rejected
 ![test3](images/SB.png)
 
-# Scenario C: Certificate from wrong CA
+## Scenario C: Certificate from wrong CA
 Goal: Verify that only certificates signed by your CA are accepted.
 Result: Passed and Rejected
 ![test3](images/SC.png)
 
-# Scenario D: Expired certificate
+## Scenario D: Expired certificate
 Goal: Verify that expired certificates are rejected.
 Result: Passed and Rejected
 ![test3](images/SD.png)
