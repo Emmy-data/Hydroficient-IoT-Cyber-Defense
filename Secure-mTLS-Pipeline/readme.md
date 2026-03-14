@@ -91,7 +91,7 @@ Terminal 3 - Run the connection benchmark file (20 test for tls and 20 for mtls)
 ```
 python3 mtls_benchmark.py --mode connection --trials 20
 ```
-The python file [cert.py](Secure-mTLS-Pipeline/mtls_benchmark.py)runs 20 connection trials for each mode and
+The python file [nTLS_benchmark.py](Secure-mTLS-Pipeline/mtls_benchmark.py)runs 20 connection trials for each mode and
 calculate the minimum, maximum and average connection time for each mode.
 
 ![test3](images/connect.png)
