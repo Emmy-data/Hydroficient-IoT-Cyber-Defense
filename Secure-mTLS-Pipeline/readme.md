@@ -76,16 +76,25 @@ Error: peer did not return a certificate. Broker rejected the connection, test p
 
 ![no-device-certificate](images/no_certs.png)
 
-### Test 2: Can a device with a certificate from a different CA connect?
-Generate differerent CA key, cert and device key, certificate (signed by different CA): [tests/generate-test-keys-certs.md](tests/generate-test-keys-certs.md)
+### Test 2: Connection time experiment
+We need two Mosquitto instances running at the same time — one with one-way TLS, one with mTLS.
 
-Run [tests/test3-different-ca.py](tests/test2-no-cert.py) that points to a device certificate signed by a different CA (not trusted by broker).
+Terminal 1 — Start the one-way TLS broker (port 8883)
+```
+mosquitto -c mosquitto_tls.conf -v
+```
+Terminal 2 — Start the mTLS broker (port 8884)
+```
+mosquitto -c mosquitto_mtls_benchmark.conf -v
+```
+Terminal 3 - Run the connection benchmark file (20 test for tls and 20 for mtls)
+```
+python3 mtls_benchmark.py --mode connection --trials 20
+```
+The python file [cert.py](tests/test4-expired-cert.py)runs 20 connection trials for each mode and
+calculate the minimum, maximum and average connection time for each mode.
 
-![test3](media/test3.png)
-
-[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)
-
-Test passed.
+![test3](images/connect.png)
 
 ### Test 3: Can a device with an expired certificate connect?
 Generate expired certificate: [generate-test-keys-certs.md](generate-test-keys-certs.md)
