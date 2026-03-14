@@ -74,7 +74,7 @@ python3 no_certs.py
 ```
 Error: peer did not return a certificate. Broker rejected the connection, test passed.
 
-![no-device-certificate](media/test2.png)
+![no-device-certificate](images/no_certs.png)
 
 ### Test 2: Can a device with a certificate from a different CA connect?
 Generate differerent CA key, cert and device key, certificate (signed by different CA): [tests/generate-test-keys-certs.md](tests/generate-test-keys-certs.md)
