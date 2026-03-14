@@ -96,16 +96,17 @@ calculate the minimum, maximum and average connection time for each mode.
 
 ![test3](images/connect.png)
 
-### Test 3: Can a device with an expired certificate connect?
-Generate expired certificate: [generate-test-keys-certs.md](generate-test-keys-certs.md)
+Result: The overhead is 55.4% as it takes extra 3.7 ms for the devices to connect
+under Mutual TLS connection (mTLS).
 
-Run [tests/test4-expired-cert.py](tests/test4-expired-cert.py) that points to a an expired device certificate signed by the trusted CA.
+### Test 3: Message Latency Test
+Run the latency benchmark:
+```
+python mtls_benchmark.py --mode latency --count 50
+```
 
 ![test4](media/test4.png)
 
-OpenSSL Error while trying to get the error[0]: error:0A000086:SSL routines::certificate verify failed.
-
-Broker rejected the connection. Test passed.
 
 # Cost
 Adding mTLS has a connection time overhead. While making the connection, there’s an extra step (server has to verify client). This increase connection time, however, it is a one time cost. Sensors don’t need to connect again for hours or days. Once connection is established, there’s no extra message latency. In our environment, the benefits of mTLS outweigh this cost. 
