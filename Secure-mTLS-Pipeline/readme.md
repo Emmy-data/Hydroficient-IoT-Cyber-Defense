@@ -145,5 +145,8 @@ Goal: Verify that expired certificates are rejected.
 Result: Passed and Rejected
 ![test3](images/SD.png)
 
+## Summary of the scenarios
+![Summary](images/summary.png)
+ 
 # Cost
 Adding mTLS has a connection time overhead. While making the connection, there’s an extra step (server has to verify client). This increase connection time, however, it is a one time cost. Sensors don’t need to connect again for hours or days. Once connection is established, there’s no extra message latency. In our environment, the benefits of mTLS outweigh this cost. 
