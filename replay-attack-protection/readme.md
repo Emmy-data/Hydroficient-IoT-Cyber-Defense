@@ -7,7 +7,7 @@ On top of our mTLS pipeline, we will add replay attack protection (hmac signatur
 3. Sequence number validation (seen before messages blocked). 
 
 # Set up instructions
-### 0. Prerequisites
+Prerequisites
 * Generate certificates and keys using [commands](../secure-pipeline-mtls/generate-keys-certs.md).
 * Run mosquitto broker ```mosquitto -c mosquitto-mtls.conf -v```
 * Create shared key for hmac signature: create a .env file at root directory with this inside: ```SHARED_SECRET = your_secret_here```
