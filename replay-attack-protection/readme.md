@@ -1,11 +1,6 @@
 # Overview
 On top of our mTLS pipeline, we will add replay attack protection (hmac signature, timestamp, sequence numbers validated). This blocks replayed messaged.
 
-# Protections added to pipeline
-1. HMAC signature (modified messages blocked).
-2. Timestamp validation (aged messages blocked).
-3. Sequence number validation (seen before messages blocked). 
-
 # Prerequisites
 * Generate certificates by running the command
 ```
@@ -47,8 +42,14 @@ BOOOM ! BOOM !!! BOOM !!!, Our subscriber accepted the stale and replayed readin
 
 ![capture](images/sub-accept-attack.png)
 
+In order to protect against replay attacks, we need to add the following to our pipeline;
 
-* Create shared key for hmac signature: create a .env file at root directory with this inside: ```SHARED_SECRET = your_secret_here```
+# Protections added to pipeline
+*  HMAC signature (modified messages blocked).
+*  Timestamp validation (aged messages blocked).
+*  Sequence number validation (seen before messages blocked).
+
+We also need to create a shared key for hmac signature: create a .env file at root directory with this inside: ```SHARED_SECRET = your_secret_here```
 
 
 ### 1. Upgrade [publisher.py](publisher.py)
