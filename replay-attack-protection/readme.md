@@ -51,11 +51,11 @@ In order to protect against replay attacks, we need to add the following to our 
 
 We also need to create a shared key for hmac signature: create a .env file at root directory with this inside: ```SHARED_SECRET = your_secret_here```
 
-### 1. Upgraded Publisher [publisher.py](publisher_defended.py) 
+### 1. Upgraded Publisher [publisher](publisher_defended.py) 
 For every message, publisher will generate unique hmac signature, timestamp, sequence number.
 A shared secret is set between publisher and subscriber for hmac signature computation. We stored this secret as a variable in development, however it should be secured tightly in production. If the secret is exposed, hmac breaks down.
 
-### 2. Upgrade [subscriber.py](subscriber_defended.py)
+### 2. Upgraded Subscriber [subscriber](subscriber_defended.py)
 For every message, subscriber will validate:
 * hmac signature
 * timestamp
@@ -66,15 +66,24 @@ If message is too old > message rejected.
 If message sequence number has been used before for that device > message rejected.
 
 # Security Tests with upgraded publisher and subscriber files.
-### [The defended subscriber](subscriber_defended.py) view:
+
+### 1. [The defended subscriber](subscriber_defended.py) view:
+
 This interface is accepting each reading after checking with the three required protections (HMAC signature, timestamp and sequence validation).
+
 ![tests](images/sub-accept.png)
 
-### [subscriber.py](subscriber.py) view:
-With all 3 defenses, all of the replayed messages were successfully rejected.
-![subscriber-view](media/subscriber-view.png)
+### 2. [The defended subscriber](subscriber_defended.py) view:
 
-### Test Findings
+With all 3 defenses in place, i used the replay-attack tool (replay_attacker.py) to capture and replay old messages after 30 seconds (Remember that out timestamp rejection time is maximum 30 seconds, any messages replayed will be rejected.
+
+![tests](images/sub-reject.png)
+
+### 3. The defended subscriber](subscriber_defended.py) view:
+I also replayed old messages immediately after capturing to bypass the timestamp check, but the sequence counter check came in place to reject the messages because the sequence number was replayed, therefore it rejects it since that sequence has been seen before.
+
+![tests](images/sub-reject2.png)
+
 Can defenses stop immediate, delayed, modified replay attacks?
 ![defense-attack](media/defense-attack.png)
 
