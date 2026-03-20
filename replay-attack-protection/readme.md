@@ -11,9 +11,12 @@ On top of our mTLS pipeline, we will add replay attack protection (hmac signatur
 ```
 python3 generate-certs.py
 ```
-* Run mosquitto broker ```mosquitto -c mosquitto-mtls.conf -v```
+* Run mosquitto broker
+```
+mosquitto -c mosquitto-mtls.conf -v
+```
 
-# Before updating our subscriber and publisher file, let's see how replay attack works?
+### Before updating our subscriber and publisher file, let's see how replay attack works?
 
 A replay attack is when someone captures a legitimate message and re-sends it later. The message itself is real — it was created by an authorized device, at a real point in time, with valid credentials.
 
@@ -22,19 +25,19 @@ For our devices or systems to defend against replay attack, there are 3 question
 * Have I seen it?
 * Did the real sender create it?
 
-To simulate a replay attack, we need to do the following;
+### To simulate a replay attack, we need to do the following;
 
-### 1. Run the mosquitto broker on port 8883
-### 2. Run the subscriber python file (subscriber_mtls.py)
-### 3. Run the publisher python file (Publisher_mtls.py)
-### 4. Run the replay_attacker.py file in capture mode to record 5, 10 or 15 readings based on your preference
+1. Run the mosquitto broker on port 8883
+2. Run the subscriber python file (subscriber_mtls.py)
+3. Run the publisher python file (Publisher_mtls.py)
+4. Run the replay_attacker.py file in capture mode to record 5, 10 or 15 readings based on your preference
   ```
   python3 replay-attacker.py --mode capture --count 5
   ```
   The captured readings will be saved in a JSON format.
 ![capture](images/capture.png)
 
-### 5. You can stop the pubisher and allow the subscriber to keep running, the goal is to replay the captured readings and replay it, we need to check if it will accept these stale readings that was captured.
+5. You can stop the pubisher and allow the subscriber to keep running, the goal is to replay the captured readings and replay it, we need to check if it will accept these stale readings that was captured.
 ```
 python3 replay-attacker.py --mode replay
 ```
