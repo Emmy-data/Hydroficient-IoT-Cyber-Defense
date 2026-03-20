@@ -79,7 +79,7 @@ With all 3 defenses in place, i used the replay-attack tool (replay_attacker.py)
 
 ![tests](images/sub-reject.png)
 
-### 3. The defended subscriber](subscriber_defended.py) view:
+### 3. [The defended subscriber](subscriber_defended.py) view:
 I also replayed old messages immediately after capturing to bypass the timestamp check, but the sequence counter check came in place to reject the messages because the sequence number was replayed, therefore it rejects it since that sequence has been seen before.
 
 ![tests](images/sub-reject2.png)
