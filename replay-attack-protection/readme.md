@@ -51,7 +51,6 @@ In order to protect against replay attacks, we need to add the following to our 
 
 We also need to create a shared key for hmac signature: create a .env file at root directory with this inside: ```SHARED_SECRET = your_secret_here```
 
-
 ### 1. Upgrade [publisher.py](publisher.py)
 For every message, publisher will generate unique hmac signature, timestamp, sequence number.
 A shared secret is set between publisher and subscriber for hmac signature computation. We stored this secret as a variable in development, however it should be secured tightly in production. If the secret is exposed, hmac breaks down.
@@ -66,9 +65,10 @@ If recomputed hmac signature doesn't match > message was modified; rejected.
 If message is too old > message rejected.
 If message sequence number has been used before for that device > message rejected.
 
-# Security Tests
-### [tests.py](tests.py) view:
-![tests](media/tests.png)
+# Security Tests with upgraded publisher and subscriber files.
+### [The defended subscriber](subscriber_defended.py) view:
+This interface is accepting each reading after checking with the three required protections (HMAC signature, timestamp and sequence validation).
+![tests](images/sub-accept.png)
 
 ### [subscriber.py](subscriber.py) view:
 With all 3 defenses, all of the replayed messages were successfully rejected.
