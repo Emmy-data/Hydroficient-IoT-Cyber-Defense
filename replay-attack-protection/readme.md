@@ -85,7 +85,7 @@ I also replayed old messages immediately after capturing to bypass the timestamp
 ![tests](images/sub-reject2.png)
 
 Can defenses stop immediate, delayed, modified replay attacks?
-![defense-attack](media/defense-attack.png)
+![defense-attack](images/all.png)
 
 Individually, these 3 protections (hmac, timestamp, sequence counter) all have gaps. However, when used together, they fill each other's gap and provide strong replay protection.
 
